@@ -26,32 +26,17 @@ public class GirlServiceImpl implements GirlService{
     @Transactional(rollbackFor = Exception.class)
     public void insertTwo() throws RuntimeException {
 
-//        try {
             Girl girlA = new Girl();
             girlA.setCupSize("A");
             girlA.setAge(18);
             Girl saveA = girlRepository.save(girlA);
-            if(saveA == null){
-                throw new RuntimeException();
-            }
 
             Girl girlB = new Girl();
-            girlB.setCupSize("BBBBB");
+            //girlB.setCupSize("B");
+            //事务无法回滚是  数据库是MyIsm  InnoDb才行
+            girlB.setCupSize("BB");
             girlB.setAge(28);
             Girl saveB = girlRepository.save(girlB);
-            if(saveB == null){
-                throw new RuntimeException();
-            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-            //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-
-//            想启用本类的普通方法的事务，通过接口来调用该方法即可生效。
-//            如果先在方法内部catch异常，需要添加
-//            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-//            否则可以在外面捕获这个异常。下面是在方法内部捕获异常的示例
-//        }
-
 
     }
 
